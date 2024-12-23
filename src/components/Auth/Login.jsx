@@ -16,27 +16,27 @@ const Login = () => {
     const password = form.get("password");
 
     // login implement
-    // logInUser(email, password)
-    //   .then((result) => {
-    //     // console.log(result.user);
-    //     toast.success("You are logged in .");
-    //     navigate("/");
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Email or Password Wrong .");
-    //   });
+    logInUser(email, password)
+      .then((result) => {
+        // console.log(result.user);
+        toast.success("You are logged in .");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error("Email or Password Wrong .");
+      });
   };
   const handleGoogleSignIn = () => {
-    // signInWithGoogle()
-    //   .then((result) => {
-    //     // console.log(result.user);
-    //     // console.log("sign successfull");s
-    //     navigate("/");
-    //     toast.success("Logged in successfull.");
-    //   })
-    //   .catch((err) => {
-    //     // console.log("errror", err);
-    //   });
+    signInWithGoogle()
+      .then((result) => {
+        // console.log(result.user);
+        // console.log("sign successfull");s
+        navigate("/");
+        toast.success("Logged in successfull.");
+      })
+      .catch((err) => {
+        // console.log("errror", err);
+      });
   };
   return (
     <div className="flex justify-center items-center p-9">
