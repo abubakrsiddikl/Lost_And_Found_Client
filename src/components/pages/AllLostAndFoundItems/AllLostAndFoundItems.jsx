@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllLostAndFoundItems = () => {
   const items = useLoaderData();
@@ -9,7 +9,11 @@ const AllLostAndFoundItems = () => {
       {items.map((item) => (
         <div key={item._id} className="card  w-full shadow-xl">
           <figure>
-            <img src={item.thumbnail} className="w-full h-[200px]" alt="Shoes" />
+            <img
+              src={item.thumbnail}
+              className="w-full h-[200px]"
+              alt="Shoes"
+            />
           </figure>
           <div className="card-body">
             <h2 className="card-title">{item.title}</h2>
@@ -17,7 +21,9 @@ const AllLostAndFoundItems = () => {
             <p>Location : {item.location}</p>
             <p>Date : {item.date}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-neutral">View Details</button>
+              <Link to={`/items/${item._id}`}>
+                <button className="btn btn-neutral">View Details</button>
+              </Link>
             </div>
           </div>
         </div>
