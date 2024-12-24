@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-//   const {createNewUser}= useContext(AuthContext)
+  const {createNewUser, signInWithGoogle}= useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const handleRegister = (e) => {
@@ -18,32 +18,32 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    if (!passwordRegex.test(password)) {
-      toast.error("Password should be strong . ");
-      return;
-    }
+    // if (!passwordRegex.test(password)) {
+    //   toast.error("Password should be strong . ");
+    //   return;
+    // }
     // register new user
-    // createNewUser(email, password)
-    //   .then((result) => {
-    //     // console.log(result.user);
-    //     updateProfile(result.user, { displayName: name, photoURL: photo });
-    //     toast.success("Registration successfully.");
-    //     navigate("/");
-    //   })
-    //   .catch((err) => {
-    //     // console.log(err);
-    //   });
+    createNewUser(email, password)
+      .then((result) => {
+        // console.log(result.user);
+        updateProfile(result.user, { displayName: name, photoURL: photo });
+        toast.success("Registration successfully.");
+        navigate("/");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
   };
   const handleGoogleSignIn = () => {
-    // signInWithGoogle()
-    //   .then((result) => {
-    //     // console.log(result.user);
-    //     toast.success("sign successfull");
-    //     navigate("/");
-    //   })
-    //   .catch((err) => {
-    //     // console.log("errror", err);
-    //   });
+    signInWithGoogle()
+      .then((result) => {
+        // console.log(result.user);
+        toast.success("sign successfull");
+        navigate("/");
+      })
+      .catch((err) => {
+        // console.log("errror", err);
+      });
   };
   return (
     <div>
