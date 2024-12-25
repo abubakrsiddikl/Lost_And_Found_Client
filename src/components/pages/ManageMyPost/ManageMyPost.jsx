@@ -43,6 +43,7 @@ const ManageMyPost = () => {
   };
   return (
     <div className="w-11/12 mx-auto">
+      <h1 className="text-center text-4xl font-bold">My Post</h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -54,6 +55,7 @@ const ManageMyPost = () => {
                 </label>
               </th>
               <th>Title</th>
+              <th>Category</th>
               <th>Type</th>
               <th>Date</th>
               <th>Action</th>
@@ -82,6 +84,7 @@ const ManageMyPost = () => {
                     </div>
                   </div>
                 </td>
+                <td>{post.category}</td>
                 <td>{post.postType}</td>
                 <td>{post.date}</td>
                 <th>

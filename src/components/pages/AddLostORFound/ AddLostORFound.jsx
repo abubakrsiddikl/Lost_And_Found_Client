@@ -47,6 +47,7 @@ const AddLostORFound = () => {
     <div className="w-11/12 mx-auto">
       <div className="card w-full shrink-0">
         <form onSubmit={handleAddPost} className="card-body bg-base-200">
+          <h1 className="text-center text-4xl font-bold">Add Your Post</h1>
           {/* row 1 */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-3">
             <div className="form-control w-full">

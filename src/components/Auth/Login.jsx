@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const { logInUser, signInWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
+  const from = location.state || "/";
+  console.log(location)
   const [showPassword, setShowPassword] = useState(false);
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -19,8 +22,8 @@ const Login = () => {
     logInUser(email, password)
       .then((result) => {
         // console.log(result.user);
+        navigate(from);
         toast.success("You are logged in .");
-        navigate("/");
       })
       .catch((err) => {
         toast.error("Email or Password Wrong .");
@@ -31,7 +34,7 @@ const Login = () => {
       .then((result) => {
         // console.log(result.user);
         // console.log("sign successfull");s
-        navigate("/");
+        navigate(from);
         toast.success("Logged in successfull.");
       })
       .catch((err) => {

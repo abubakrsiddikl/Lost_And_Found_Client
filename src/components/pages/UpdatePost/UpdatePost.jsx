@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { format, parse } from "date-fns";
 import DatePicker from "react-datepicker";
@@ -12,6 +12,7 @@ const UpdatePost = () => {
   const [selectedDate, setSelectedDate] = useState(post?.date);
 
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     postType,
     category,
@@ -56,6 +57,7 @@ const UpdatePost = () => {
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Your Post Updated Success . ")
+          navigate("/myItems")
         }
       });
   };
@@ -210,7 +212,7 @@ const UpdatePost = () => {
           {/* btn div */}
           <div className="form-control mt-6 flex justify-center items-center">
             <button type="submit" className="btn w-[180px] btn-neutral">
-              Add Post
+              Update Post
             </button>
           </div>
         </form>
