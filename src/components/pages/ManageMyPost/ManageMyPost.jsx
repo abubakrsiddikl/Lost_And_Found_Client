@@ -15,6 +15,7 @@ const ManageMyPost = () => {
       .get(`http://localhost:5000/myItems/${user?.email}`)
       .then((res) => setPosts(res.data));
   }, [user?.email]);
+  
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

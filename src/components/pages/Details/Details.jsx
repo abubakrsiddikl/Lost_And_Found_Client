@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { data, useLoaderData } from "react-router-dom";
 import Modal from "react-modal";
+import DatePicker from "react-datepicker";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Details = () => {
+  const {user}= useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [selectedDate, setSelectedDate] = useState(null);
   const item = useLoaderData();
   const {
     postType,
@@ -91,14 +94,14 @@ const Details = () => {
               ) : (
                 <div className="flex items-center justify-center bg-gray-100">
                   <button onClick={openModal} className="btn btn-neutral">
-                  This is Mine !
+                    This is Mine !
                   </button>
 
                   <Modal
                     isOpen={isOpen}
                     onRequestClose={closeModal}
                     ariaHideApp={false}
-                    className="bg-white w-96 p-6 rounded-lg shadow-lg mx-auto relative"
+                    className="bg-white w-1/2 p-6 rounded-lg shadow-lg mx-auto relative"
                     overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
                   >
                     {/* Close Button */}
@@ -110,13 +113,78 @@ const Details = () => {
                     </button>
 
                     {/* Modal Content */}
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                      Modal Title
-                    </h2>
-                    <p className="text-gray-600 mb-6">
-                      This is a React Modal styled with Tailwind CSS.
-                    </p>
-                    <div className="flex justify-end">
+                    {/* recovered locaion */}
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">Recovered location</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="recoveredLocation"
+                        placeholder="Enter Recovered Location"
+                        className="input input-bordered"
+                        required
+                      />
+                    </div>
+                     {/* recoverde date */}
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">Date Lost or Found</span>
+                      </label>
+                      <DatePicker
+                        selected={selectedDate}
+                        onChange={(date) => setSelectedDate(date)}
+                        dateFormat="dd/MM/yyyy"
+                        className="input input-bordered w-full"
+                        icon="fa fa-calendar"
+                        placeholderText="Select Date Lost or Found"
+                        required
+                      ></DatePicker>
+                    </div>
+                    
+                    {/* recovered email */}
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">Recovered Person Email</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder=""
+                        value={user?.email}
+                        className="input input-bordered"
+                        required
+                      />
+                    </div>
+                    {/* recovered name */}
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">Recovered Person Name</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder=""
+                        value={user?.displayName}
+                        className="input input-bordered"
+                        required
+                      />
+                    </div>
+                    {/* recovered photo */}
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">Recovered Person Photo</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder=""
+                        value={user?.photoURL}
+                        className="input input-bordered"
+                        required
+                      />
+                    </div>
+                    <div className="flex justify-center mt-3">
                       <button
                         onClick={closeModal}
                         className="btn btn-info btn-outline"
