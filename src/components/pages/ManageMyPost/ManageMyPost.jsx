@@ -5,6 +5,7 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
@@ -15,11 +16,27 @@ const ManageMyPost = () => {
       .then((res) => setPosts(res.data));
   }, [user?.email]);
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/item/${id}`).then((res) => {
-      if (res.data.deletedCount === 1) {
-        const remaingPosts = posts.filter((post) => post._id !== id);
-        setPosts(remaingPosts);
-        toast.success("Deleted suceses");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/item/${id}`).then((res) => {
+          if (res.data.deletedCount === 1) {
+            const remaingPosts = posts.filter((post) => post._id !== id);
+            setPosts(remaingPosts);
+          }
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
       }
     });
   };
