@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import axios from "axios";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const ManageMyPost = () => {
       .get(`http://localhost:5000/myItems/${user?.email}`)
       .then((res) => setPosts(res.data));
   }, [user?.email]);
-  console.log(posts);
+  // console.log(posts);
   return (
     <div className="w-11/12 mx-auto">
       <div className="overflow-x-auto">
@@ -45,10 +46,7 @@ const ManageMyPost = () => {
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={post.thumbnail}
-                          alt=""
-                        />
+                        <img src={post.thumbnail} alt="" />
                       </div>
                     </div>
                     <div>
@@ -57,13 +55,16 @@ const ManageMyPost = () => {
                     </div>
                   </div>
                 </td>
-                <td>
-                  {post.postType}
-                </td>
+                <td>{post.postType}</td>
                 <td>{post.date}</td>
                 <th>
                   <p className="flex  items-center gap-3">
-                    <button className="btn btn-neutral btn-sm">update</button>
+                    <Link
+                      to={`/updateItems/${post._id}`}
+                      className="btn btn-neutral btn-sm"
+                    >
+                      update
+                    </Link>
                     <button className="text-2xl text-red-500 btn btn-sm">
                       <MdDelete></MdDelete>
                     </button>

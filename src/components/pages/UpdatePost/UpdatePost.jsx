@@ -1,18 +1,33 @@
 import React, { useContext, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
+import DatePicker from "react-datepicker";
 import axios from "axios";
-import toast from "react-hot-toast";
-const AddLostORFound = () => {
+
+const UpdatePost = () => {
+  const post = useLoaderData();
+    console.log(post);
   const [selectedDate, setSelectedDate] = useState(null);
+
   const { user } = useContext(AuthContext);
-  const handleAddPost = (e) => {
+  const {
+    postType,
+    category,
+    description,
+    email,
+    name,
+    location,
+    thumbnail,
+    title,
+    date,
+    _id
+  } = post;
+  const handleUpdatePost = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
-    const date = format(selectedDate, "dd MMM yyyy");
+    const date = selectedDate ? format(selectedDate, "dd MMM yyyy") : null;
     const {
       postType,
       category,
@@ -35,25 +50,25 @@ const AddLostORFound = () => {
       date,
     };
     // data post axios metod to database
-    axios.post("http://localhost:5000/addItems", newItem).then((res) => {
-      if (res.data) {
-        toast.success("Your Post Added Auccessfully .");
-        console.log(res);
-      }
-    });
-    console.log(newItem);
+    axios.put(`http://localhost:5000/updateItems/${_id}`,newItem)
+     .then(res => console.log(res.data))
   };
   return (
     <div className="w-11/12 mx-auto">
       <div className="card w-full shrink-0">
-        <form onSubmit={handleAddPost} className="card-body bg-base-200">
+        <form onSubmit={handleUpdatePost} className="card-body bg-base-200">
+          <h1 className="text-center text-4xl font-bold">Update Your Post</h1>
           {/* row 1 */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-3">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Post Type</span>
               </label>
-              <select name="postType" className="select select-bordered w-full">
+              <select
+                value={postType}
+                name="postType"
+                className="select select-bordered w-full"
+              >
                 <option disabled selected>
                   {" "}
                   Select Post Type
@@ -69,6 +84,7 @@ const AddLostORFound = () => {
               <input
                 type="text"
                 name="thumbnail"
+                value={thumbnail}
                 placeholder="Enter image url"
                 className="input input-bordered"
                 required
@@ -84,6 +100,7 @@ const AddLostORFound = () => {
               <input
                 type="text"
                 name="title"
+                value={title}
                 placeholder="Enter Title"
                 className="input input-bordered"
                 required
@@ -96,6 +113,7 @@ const AddLostORFound = () => {
               <input
                 type="text"
                 name="description"
+                value={description}
                 placeholder="Enter Description"
                 className="input input-bordered"
                 required
@@ -108,7 +126,11 @@ const AddLostORFound = () => {
               <label className="label">
                 <span className="label-text">Category</span>
               </label>
-              <select name="category" className="select select-bordered w-full">
+              <select
+                value={category}
+                name="category"
+                className="select select-bordered w-full"
+              >
                 <option disabled selected>
                   {" "}
                   Select Category
@@ -126,6 +148,7 @@ const AddLostORFound = () => {
               <input
                 type="text"
                 name="location"
+                value={location}
                 placeholder="Enter Location where the item was lost or found"
                 className="input input-bordered"
                 required
@@ -190,4 +213,4 @@ const AddLostORFound = () => {
   );
 };
 
-export default AddLostORFound;
+export default UpdatePost;

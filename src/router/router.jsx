@@ -7,6 +7,7 @@ import AddLostORFound from "../components/pages/AddLostORFound/ AddLostORFound";
 import AllLostAndFoundItems from "../components/pages/AllLostAndFoundItems/AllLostAndFoundItems";
 import Details from "../components/pages/Details/Details";
 import ManageMyPost from "../components/pages/ManageMyPost/ManageMyPost";
+import UpdatePost from "../components/pages/UpdatePost/UpdatePost";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
       {
         path: "/myItems",
         element: <ManageMyPost></ManageMyPost>,
+      },
+      {
+        path: "/updateItems/:id",
+        element: <UpdatePost></UpdatePost>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/items/${params.id}`),
       },
       {
         path: "/login",

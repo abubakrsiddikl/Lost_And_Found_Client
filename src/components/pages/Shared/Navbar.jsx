@@ -77,10 +77,10 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/myItems">All Recovered Items Page</NavLink>
+                  <NavLink>All Recovered Items Page</NavLink>
                 </li>
                 <li>
-                  <NavLink>Manage My Items Page</NavLink>
+                  <NavLink to="/myItems">Manage My Items Page</NavLink>
                 </li>
               </ul>
             </div>
