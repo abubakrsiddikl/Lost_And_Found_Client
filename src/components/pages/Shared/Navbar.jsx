@@ -77,7 +77,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink>All Recovered Items Page</NavLink>
+                  <NavLink to="/myItems">All Recovered Items Page</NavLink>
                 </li>
                 <li>
                   <NavLink>Manage My Items Page</NavLink>
