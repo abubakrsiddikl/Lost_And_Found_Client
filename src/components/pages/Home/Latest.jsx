@@ -10,8 +10,8 @@ const Latest = () => {
       .then((res) => setPosts(res.data));
   }, []);
   return (
-    <div className=" mt-6 bg-base-200">
-      <h1 className="text-center text-4xl font-bold">
+    <div className=" pt-7 pb-7 bg-base-200">
+      <h1 className="text-center text-4xl font-bold mb-2">
         Latest Lost & Found Post{" "}
       </h1>
       <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-3">

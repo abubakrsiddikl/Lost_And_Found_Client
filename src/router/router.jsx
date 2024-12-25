@@ -8,6 +8,7 @@ import AllLostAndFoundItems from "../components/pages/AllLostAndFoundItems/AllLo
 import Details from "../components/pages/Details/Details";
 import ManageMyPost from "../components/pages/ManageMyPost/ManageMyPost";
 import UpdatePost from "../components/pages/UpdatePost/UpdatePost";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addItems",
-        element: <AddLostORFound></AddLostORFound>,
+        element: (
+          <PrivateRoute>
+            <AddLostORFound></AddLostORFound>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allItems",
@@ -29,17 +34,30 @@ const router = createBrowserRouter([
       },
       {
         path: "/items/:id",
-        element: <Details></Details>,
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/items/${params.id}`),
       },
       {
         path: "/myItems",
-        element: <ManageMyPost></ManageMyPost>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <ManageMyPost></ManageMyPost>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/updateItems/:id",
-        element: <UpdatePost></UpdatePost>,
+        element: (
+          <PrivateRoute>
+            <UpdatePost></UpdatePost>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/items/${params.id}`),
       },
