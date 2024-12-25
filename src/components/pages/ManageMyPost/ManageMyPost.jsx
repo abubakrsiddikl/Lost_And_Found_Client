@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,15 @@ const ManageMyPost = () => {
       .get(`http://localhost:5000/myItems/${user?.email}`)
       .then((res) => setPosts(res.data));
   }, [user?.email]);
-  // console.log(posts);
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/item/${id}`).then((res) => {
+      if (res.data.deletedCount === 1) {
+        const remaingPosts = posts.filter((post) => post._id !== id);
+        setPosts(remaingPosts);
+        toast.success("Deleted suceses");
+      }
+    });
+  };
   return (
     <div className="w-11/12 mx-auto">
       <div className="overflow-x-auto">
@@ -65,7 +74,10 @@ const ManageMyPost = () => {
                     >
                       update
                     </Link>
-                    <button className="text-2xl text-red-500 btn btn-sm">
+                    <button
+                      onClick={() => handleDelete(post._id)}
+                      className="text-2xl text-red-500 btn btn-sm"
+                    >
                       <MdDelete></MdDelete>
                     </button>
                   </p>

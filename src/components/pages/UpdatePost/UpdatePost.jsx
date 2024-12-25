@@ -4,11 +4,12 @@ import { AuthContext } from "../../context/AuthProvider";
 import { format, parse } from "date-fns";
 import DatePicker from "react-datepicker";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const UpdatePost = () => {
   const post = useLoaderData();
-    console.log(post);
-  const [selectedDate, setSelectedDate] = useState(null);
+  // console.log(post);
+  const [selectedDate, setSelectedDate] = useState(post?.date);
 
   const { user } = useContext(AuthContext);
   const {
@@ -21,7 +22,7 @@ const UpdatePost = () => {
     thumbnail,
     title,
     date,
-    _id
+    _id,
   } = post;
   const handleUpdatePost = (e) => {
     e.preventDefault();
@@ -50,8 +51,13 @@ const UpdatePost = () => {
       date,
     };
     // data post axios metod to database
-    axios.put(`http://localhost:5000/updateItems/${_id}`,newItem)
-     .then(res => console.log(res.data))
+    axios
+      .put(`http://localhost:5000/updateItems/${_id}`, newItem)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Your Post Updated Success . ")
+        }
+      });
   };
   return (
     <div className="w-11/12 mx-auto">
@@ -65,7 +71,7 @@ const UpdatePost = () => {
                 <span className="label-text">Post Type</span>
               </label>
               <select
-                value={postType}
+                defaultValue={postType}
                 name="postType"
                 className="select select-bordered w-full"
               >
@@ -84,7 +90,7 @@ const UpdatePost = () => {
               <input
                 type="text"
                 name="thumbnail"
-                value={thumbnail}
+                defaultValue={thumbnail}
                 placeholder="Enter image url"
                 className="input input-bordered"
                 required
@@ -100,7 +106,7 @@ const UpdatePost = () => {
               <input
                 type="text"
                 name="title"
-                value={title}
+                defaultValue={title}
                 placeholder="Enter Title"
                 className="input input-bordered"
                 required
@@ -113,7 +119,7 @@ const UpdatePost = () => {
               <input
                 type="text"
                 name="description"
-                value={description}
+                defaultValue={description}
                 placeholder="Enter Description"
                 className="input input-bordered"
                 required
@@ -127,7 +133,7 @@ const UpdatePost = () => {
                 <span className="label-text">Category</span>
               </label>
               <select
-                value={category}
+                defaultValue={category}
                 name="category"
                 className="select select-bordered w-full"
               >
@@ -148,7 +154,7 @@ const UpdatePost = () => {
               <input
                 type="text"
                 name="location"
-                value={location}
+                defaultValue={location}
                 placeholder="Enter Location where the item was lost or found"
                 className="input input-bordered"
                 required
@@ -177,7 +183,7 @@ const UpdatePost = () => {
               </label>
               <input
                 type="text"
-                defaultValue={user?.email}
+                value={user?.email}
                 name="email"
                 placeholder=""
                 className="input input-bordered"
@@ -193,7 +199,7 @@ const UpdatePost = () => {
               </label>
               <input
                 type="text"
-                defaultValue={user?.displayName}
+                value={user?.displayName}
                 name="name"
                 placeholder=""
                 className="input input-bordered"

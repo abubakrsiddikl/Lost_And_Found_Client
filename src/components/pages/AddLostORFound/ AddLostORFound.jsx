@@ -37,11 +37,11 @@ const AddLostORFound = () => {
     // data post axios metod to database
     axios.post("http://localhost:5000/addItems", newItem).then((res) => {
       if (res.data) {
-        toast.success("Your Post Added Auccessfully .");
-        console.log(res);
+        toast.success("Your Post Added successfully .");
+        // console.log(res);
       }
     });
-    console.log(newItem);
+    // console.log(newItem);
   };
   return (
     <div className="w-11/12 mx-auto">

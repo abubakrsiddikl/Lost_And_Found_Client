@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const AllLostAndFoundItems = () => {
   const items = useLoaderData();
-  console.log(items);
+  // console.log(items);
   return (
     <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-4">
       {items.map((item) => (
