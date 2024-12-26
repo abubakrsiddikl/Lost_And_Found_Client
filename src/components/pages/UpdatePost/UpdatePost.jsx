@@ -1,18 +1,28 @@
-import React, { useContext, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { format, parse } from "date-fns";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const UpdatePost = () => {
-  const post = useLoaderData();
-  console.log(post);
+  const [post, setPost] = useState([]);
+  // console.log(post);
   const [selectedDate, setSelectedDate] = useState(post?.date);
   // console.log(post)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
+  useEffect(() => {
+    try {
+      axiosSecure.get(`/items/${id}`).then((res) => setPost(res.data));
+    } catch (error) {
+      // console.log(error);
+    }
+  }, []);
   const {
     postType,
     category,
@@ -25,6 +35,7 @@ const UpdatePost = () => {
     date,
     _id,
   } = post;
+  console.log(date)
   const handleUpdatePost = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -56,8 +67,8 @@ const UpdatePost = () => {
       .put(`http://localhost:5000/updateItems/${_id}`, newItem)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
-          toast.success("Your Post Updated Success . ")
-          navigate("/myItems")
+          toast.success("Your Post Updated Success . ");
+          navigate("/myItems");
         }
       });
   };
@@ -77,7 +88,7 @@ const UpdatePost = () => {
                 name="postType"
                 className="select select-bordered w-full"
               >
-                <option disabled selected>
+                <option disabled >
                   {" "}
                   Select Post Type
                 </option>
@@ -139,7 +150,7 @@ const UpdatePost = () => {
                 name="category"
                 className="select select-bordered w-full"
               >
-                <option disabled selected>
+                <option disabled>
                   {" "}
                   Select Category
                 </option>

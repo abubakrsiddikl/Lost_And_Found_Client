@@ -33,6 +33,7 @@ const AddLostORFound = () => {
       thumbnail,
       title,
       date,
+      status: "Not-Recovered"
     };
     // data post axios metod to database
     axios.post("http://localhost:5000/addItems", newItem).then((res) => {

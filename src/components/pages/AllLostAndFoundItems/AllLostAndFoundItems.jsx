@@ -7,7 +7,7 @@ const AllLostAndFoundItems = () => {
   const [searchParams, setSearchParams] = useState("");
   const [posts, setPosts] = useState(items);
   // console.log(items);
-  console.log(searchParams);
+  // console.log(searchParams);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/allItems?searchParams=${searchParams}`)
@@ -53,6 +53,7 @@ const AllLostAndFoundItems = () => {
               <p>Type : {post.postType}</p>
               <p>Location : {post.location}</p>
               <p>Date : {post.date}</p>
+              <p>Status : {post?.status}</p>
               <div className="card-actions justify-end">
                 <Link to={`/items/${post._id}`}>
                   <button className="btn btn-neutral">View Details</button>

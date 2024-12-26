@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter,  } from "react-router-dom";
 import MainLayout from "../components/MainLayout/MainLayout";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
@@ -9,9 +9,10 @@ import Details from "../components/pages/Details/Details";
 import ManageMyPost from "../components/pages/ManageMyPost/ManageMyPost";
 import UpdatePost from "../components/pages/UpdatePost/UpdatePost";
 import PrivateRoute from "./PrivateRoute";
-import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 
-const axiosSecure = useAxiosSecure();
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,10 +42,7 @@ const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        loader: async ({ params }) => {
-          const res = await axiosSecure.get(`/items/${params.id}`);
-          return res.data;
-        },
+        
       },
       {
         path: "/myItems",
@@ -62,10 +60,6 @@ const router = createBrowserRouter([
             <UpdatePost></UpdatePost>
           </PrivateRoute>
         ),
-        loader: async ({ params }) => {
-          const res = await axiosSecure.get(`/items/${params.id}`);
-          return res.data;
-        },
       },
       {
         path: "/login",
