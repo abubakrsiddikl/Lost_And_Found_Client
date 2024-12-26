@@ -8,9 +8,9 @@ import toast from "react-hot-toast";
 
 const UpdatePost = () => {
   const post = useLoaderData();
-  // console.log(post);
+  console.log(post);
   const [selectedDate, setSelectedDate] = useState(post?.date);
-
+  // console.log(post)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const {

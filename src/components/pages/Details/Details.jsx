@@ -1,14 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { data, useLoaderData } from "react-router-dom";
 import Modal from "react-modal";
 import DatePicker from "react-datepicker";
 import { AuthContext } from "../../context/AuthProvider";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Details = () => {
   const {user}= useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const item = useLoaderData();
+  // console.log(item)
+  // const [posts, setPosts] = useState(item);
+  // const axiosSecure= useAxiosSecure();
+  // useEffect(()=>{
+  //   axiosSecure.get("")
+  // },[])
   const {
     postType,
     category,

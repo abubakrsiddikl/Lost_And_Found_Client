@@ -1,20 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import axios from "axios";
-import { FaDeleteLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/myItems/${user?.email}`, {
-        withCredentials: true,
-      })
+    // use custom axiosSecure hook
+    axiosSecure
+      .get(`/myItems/${user?.email}`)
       .then((res) => setPosts(res.data));
   }, [user?.email]);
 

@@ -9,7 +9,9 @@ import Details from "../components/pages/Details/Details";
 import ManageMyPost from "../components/pages/ManageMyPost/ManageMyPost";
 import UpdatePost from "../components/pages/UpdatePost/UpdatePost";
 import PrivateRoute from "./PrivateRoute";
+import useAxiosSecure from "../components/Hooks/useAxiosSecure";
 
+const axiosSecure = useAxiosSecure();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,8 +41,10 @@ const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/${params.id}`),
+        loader: async ({ params }) => {
+          const res = await axiosSecure.get(`/items/${params.id}`);
+          return res.data;
+        },
       },
       {
         path: "/myItems",
@@ -58,8 +62,10 @@ const router = createBrowserRouter([
             <UpdatePost></UpdatePost>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/${params.id}`),
+        loader: async ({ params }) => {
+          const res = await axiosSecure.get(`/items/${params.id}`);
+          return res.data;
+        },
       },
       {
         path: "/login",
