@@ -48,15 +48,19 @@ const Details = () => {
       .then((res) => {
         if (res.data) {
           // console.log(res.data)
+        }
+      });
+    // console.log(newRecoveredItem);
+  };
+  const handleUpdateStatus = () => {
+    const data = { status: "Recovered" };
+    axios
+      .patch(`http://localhost:5000/updateStatus/${id}`, data)
+      .then((res) => {
+        if (res.data.modifiedCount === 1) {
           toast.success("Item has been recoverd");
         }
       });
-    console.log(newRecoveredItem);
-  };
-  const handleUpdate = () => {
-    const data = { status: "Recovered" };
-    axios.patch(`http://localhost:5000/updateStatus/${id}`,data)
-     .then(res => console.log(res.data))
   };
   return (
     <div className="bg-gray-100 min-h-screen py-10">
@@ -93,14 +97,14 @@ const Details = () => {
               {postType === "Lost" ? (
                 <div className="flex items-center justify-center bg-gray-100">
                   <button onClick={openModal} className="btn btn-neutral">
-                    Found This !
+                    This is Mine !
                   </button>
 
                   <Modal
                     isOpen={isOpen}
                     onRequestClose={closeModal}
                     ariaHideApp={false}
-                    className="bg-white w-96 p-6 rounded-lg shadow-lg mx-auto relative"
+                    className="bg-white w-full md:w-3/4 lg:w-1/2 max-w-2xl max-h-[80vh] overflow-y-auto p-6 rounded-lg shadow-lg mx-auto relative"
                     overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
                   >
                     {/* Close Button */}
@@ -112,20 +116,96 @@ const Details = () => {
                     </button>
 
                     {/* Modal Content */}
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                      Modal Title
-                    </h2>
-                    <p className="text-gray-600 mb-6">
-                      This is a React Modal styled with Tailwind CSS.
-                    </p>
-                    <div className="flex justify-end">
-                      <button
-                        onClick={closeModal}
-                        className="btn btn-info btn-outline"
-                      >
-                        Submit
-                      </button>
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                      {/* recovered locaion */}
+                      <div className="form-control w-full">
+                        <label className="label">
+                          <span className="label-text">Recovered location</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="recoveredLocation"
+                          placeholder="Enter Recovered Location"
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      {/* recoverde date */}
+                      <div className="form-control w-full">
+                        <label className="label">
+                          <span className="label-text">Date Lost or Found</span>
+                        </label>
+                        <DatePicker
+                          selected={selectedDate}
+                          onChange={(date) => setSelectedDate(date)}
+                          dateFormat="dd/MM/yyyy"
+                          className="input input-bordered w-full"
+                          icon="fa fa-calendar"
+                          placeholderText="Select Date Lost or Found"
+                          required
+                        ></DatePicker>
+                      </div>
+
+                      {/* recovered email */}
+                      <div className="form-control w-full">
+                        <label className="label">
+                          <span className="label-text">
+                            Recovered Person Email
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          name="email"
+                          placeholder=""
+                          readOnly
+                          value={user?.email}
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      {/* recovered name */}
+                      <div className="form-control w-full">
+                        <label className="label">
+                          <span className="label-text">
+                            Recovered Person Name
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder=""
+                          readOnly
+                          value={user?.displayName}
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      {/* recovered photo */}
+                      <div className="form-control w-full">
+                        <label className="label">
+                          <span className="label-text">
+                            Recovered Person Photo
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          name="photo"
+                          placeholder=""
+                          readOnly
+                          value={user?.photoURL}
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      <div className="flex justify-center mt-3">
+                        <button
+                          onClick={handleUpdateStatus()}
+                          className="btn btn-info btn-outline"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
                   </Modal>
                 </div>
               ) : (
@@ -233,7 +313,7 @@ const Details = () => {
                       </div>
                       <div className="flex justify-center mt-3">
                         <button
-                          onClick={handleUpdate}
+                          onClick={handleUpdateStatus}
                           className="btn btn-info btn-outline"
                         >
                           Submit
