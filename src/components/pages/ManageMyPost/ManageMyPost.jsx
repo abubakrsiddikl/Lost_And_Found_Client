@@ -12,10 +12,12 @@ const ManageMyPost = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myItems/${user?.email}`)
+      .get(`http://localhost:5000/myItems/${user?.email}`, {
+        withCredentials: true,
+      })
       .then((res) => setPosts(res.data));
   }, [user?.email]);
-  
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
