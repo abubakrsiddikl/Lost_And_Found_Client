@@ -63,12 +63,9 @@ The **Lost & Found Project** is a platform designed to help individuals connect 
 - **JWT (JSON Web Token)**: For user authentication.
 - **HTTP-Only Cookies**: Secure storage for tokens.
 
----
-
 ### Project Live Link:
 
 [Visit the Live Project](https://lost-and-found-web-8dbe0.web.app/)
 
----
 
 [Alternative Link Live Project](https://lost-and-found-web-8dbe0.firebaseapp.com/)
