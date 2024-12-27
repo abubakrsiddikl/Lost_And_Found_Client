@@ -13,7 +13,7 @@ const Navbar = () => {
   };
   const links = (
     <>
-      <ul className="md:flex gap-3 ">
+      <ul className=" md:flex gap-3 ">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <div className="navbar ">
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown z-50">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"

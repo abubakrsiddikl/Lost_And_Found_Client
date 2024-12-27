@@ -10,19 +10,21 @@ const AllLostAndFoundItems = () => {
   // console.log(searchParams);
   useEffect(() => {
     axios
-      .get(`https://ph-assignment-11-server-murex.vercel.app/allItems?searchParams=${searchParams}`)
+      .get(
+        `https://ph-assignment-11-server-murex.vercel.app/allItems?searchParams=${searchParams}`
+      )
       .then((res) => setPosts(res.data));
   }, [searchParams]);
   return (
-    <div>
+    <div className="pb-4">
       {/* search input */}
-      <div className="w-1/2 mx-auto p-4 pb-7">
+      <div className="w-full md:w-1/2 mx-auto p-4 pb-7">
         <label className="input input-bordered flex items-center gap-2">
           <input
             type="text"
             onChange={(e) => setSearchParams(e.target.value)}
             className="grow"
-            placeholder="Search Post"
+            placeholder="Search"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"

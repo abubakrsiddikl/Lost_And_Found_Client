@@ -16,7 +16,7 @@ import slider3 from "../../../assets/slider3.jpeg";
 
 const Banner = () => {
   return (
-    <div className="w-11/12 mx-auto mt-5">
+    <div className="w-11/12 mx-auto mt-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
