@@ -38,7 +38,12 @@ const Details = () => {
     title,
     date,
   } = post;
-  const openModal = () => setIsOpen(true);
+  const openModal = () => {
+    if (post.status === "Recovered") {
+      return toast.error("This item allready recovred.");
+    }
+    setIsOpen(true);
+  };
   const closeModal = () => setIsOpen(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,9 +51,12 @@ const Details = () => {
     const initialData = Object.fromEntries(formData.entries());
     const date = selectedDate ? format(selectedDate, "dd MMM yyyy") : null;
 
-    const newRecoveredItem = { ...initialData, id, date, status: "Recovered" };
+    const newRecoveredItem = { ...initialData, id, date, status: "Recovered", title};
     axios
-      .post("https://ph-assignment-11-server-murex.vercel.app/allRecovered", newRecoveredItem)
+      .post(
+        "https://ph-assignment-11-server-murex.vercel.app/allRecovered",
+        newRecoveredItem
+      )
       .then((res) => {
         if (res.data) {
           // console.log(res.data)
@@ -57,12 +65,19 @@ const Details = () => {
     // console.log(newRecoveredItem);
   };
   const handleUpdateStatus = () => {
+    if (post.status === "Recovered") {
+      return toast.error("This item allready recovred.");
+    }
     const data = { status: "Recovered" };
     axios
-      .patch(`https://ph-assignment-11-server-murex.vercel.app/updateStatus/${id}`, data)
+      .patch(
+        `https://ph-assignment-11-server-murex.vercel.app/updateStatus/${id}`,
+        data
+      )
       .then((res) => {
         if (res.data.modifiedCount === 1) {
           toast.success("Item has been recoverd");
+          closeModal();
         }
       });
   };
@@ -107,7 +122,6 @@ const Details = () => {
               </p>
             </div>
             <div className="flex justify-end items-center">
-              
               {postType === "Lost" ? (
                 <div className="flex items-center justify-center bg-gray-100">
                   <button onClick={openModal} className="btn btn-neutral">

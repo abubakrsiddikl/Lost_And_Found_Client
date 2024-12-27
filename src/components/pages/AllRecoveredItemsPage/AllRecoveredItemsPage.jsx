@@ -15,7 +15,7 @@ const AllRecoveredItemsPage = () => {
       .get(`/allRecovered/${user?.email}`)
       .then((res) => setItems(res.data));
   }, [user?.email]);
-
+// console.log(items)
   const handleToggleLayout = () => {
     setIsTableLayout((prevState) => !prevState);
   };
@@ -31,9 +31,9 @@ const AllRecoveredItemsPage = () => {
         </div>
         {!isTableLayout ? (
           // card format
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {items.map((item) => (
-              <div key={item._id} className="  shadow-lg bg-white rounded-xl">
+              <div key={item._id} className="  shadow-lg bg-white rounded-xl pb-3">
                 <div className="flex justify-center">
                   <img
                     src={item.photo}
@@ -45,6 +45,7 @@ const AllRecoveredItemsPage = () => {
                   <h1>Name : {item.name}</h1>
                   <p> Location : {item.recoveredLocation}</p>
                   <p>Recovered Date : {item.date}</p>
+                  <p>Recovered Item Name : {item.name}</p>
                 </div>
               </div>
             ))}
@@ -62,6 +63,7 @@ const AllRecoveredItemsPage = () => {
                     </label>
                   </th>
                   <th>Title</th>
+                  <th>Recovered Item Name</th>
                   <th>Recovered Date</th>
                 </tr>
               </thead>
@@ -91,6 +93,7 @@ const AllRecoveredItemsPage = () => {
                         </div>
                       </div>
                     </td>
+                    <td>{item.title}</td>
                     <td>{item.date}</td>
                   </tr>
                 ))}

@@ -11,14 +11,16 @@ const UpdatePost = () => {
   const [post, setPost] = useState([]);
   // console.log(post);
   const [selectedDate, setSelectedDate] = useState(post?.date);
-  // console.log(post)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   useEffect(() => {
     try {
-      axiosSecure.get(`/items/${id}`).then((res) => setPost(res.data));
+      axiosSecure.get(`/items/${id}`).then((res) => {
+        setPost(res.data);
+        setSelectedDate(new Date(res.data.date));
+      });
     } catch (error) {
       // console.log(error);
     }
@@ -64,7 +66,10 @@ const UpdatePost = () => {
     };
     // data post axios metod to database
     axios
-      .put(`https://ph-assignment-11-server-murex.vercel.app/updateItems/${_id}`, newItem)
+      .put(
+        `https://ph-assignment-11-server-murex.vercel.app/updateItems/${_id}`,
+        newItem
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Your Post Updated Success . ");
@@ -88,10 +93,7 @@ const UpdatePost = () => {
                 name="postType"
                 className="select select-bordered w-full"
               >
-                <option disabled >
-                  {" "}
-                  Select Post Type
-                </option>
+                <option disabled> Select Post Type</option>
                 <option>Lost</option>
                 <option>Found</option>
               </select>
@@ -150,10 +152,7 @@ const UpdatePost = () => {
                 name="category"
                 className="select select-bordered w-full"
               >
-                <option disabled>
-                  {" "}
-                  Select Category
-                </option>
+                <option disabled> Select Category</option>
                 <option>Pets</option>
                 <option>Documents</option>
                 <option>Gadgets</option>
