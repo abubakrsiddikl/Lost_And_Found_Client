@@ -35,7 +35,7 @@ const UpdatePost = () => {
     date,
     _id,
   } = post;
-  console.log(date)
+  // console.log(date)
   const handleUpdatePost = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
