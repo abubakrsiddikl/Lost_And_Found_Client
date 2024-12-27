@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://ph-assignment-11-server-murex.vercel.app",
   withCredentials: true,
 });
 const useAxiosSecure = () => {

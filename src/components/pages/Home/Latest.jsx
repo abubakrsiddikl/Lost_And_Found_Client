@@ -6,7 +6,7 @@ const Latest = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/latestPost")
+      .get("https://ph-assignment-11-server-murex.vercel.app/latestPost")
       .then((res) => setPosts(res.data));
   }, []);
   return (

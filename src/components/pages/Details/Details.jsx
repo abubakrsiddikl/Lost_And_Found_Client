@@ -47,7 +47,7 @@ const Details = () => {
 
     const newRecoveredItem = { ...initialData, id, date, status: "Recovered" };
     axios
-      .post("http://localhost:5000/allRecovered", newRecoveredItem)
+      .post("https://ph-assignment-11-server-murex.vercel.app/allRecovered", newRecoveredItem)
       .then((res) => {
         if (res.data) {
           // console.log(res.data)
@@ -58,7 +58,7 @@ const Details = () => {
   const handleUpdateStatus = () => {
     const data = { status: "Recovered" };
     axios
-      .patch(`http://localhost:5000/updateStatus/${id}`, data)
+      .patch(`https://ph-assignment-11-server-murex.vercel.app/updateStatus/${id}`, data)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
           toast.success("Item has been recoverd");

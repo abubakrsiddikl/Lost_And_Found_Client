@@ -64,7 +64,7 @@ const UpdatePost = () => {
     };
     // data post axios metod to database
     axios
-      .put(`http://localhost:5000/updateItems/${_id}`, newItem)
+      .put(`https://ph-assignment-11-server-murex.vercel.app/updateItems/${_id}`, newItem)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Your Post Updated Success . ");

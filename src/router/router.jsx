@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/allItems",
         element: <AllLostAndFoundItems></AllLostAndFoundItems>,
-        loader: () => fetch("http://localhost:5000/allItems"),
+        loader: () => fetch("https://ph-assignment-11-server-murex.vercel.app/allItems"),
       },
       {
         path: "/items/:id",
