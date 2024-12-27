@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -50,7 +50,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className=" text-xl"><img src={logo} className="w-20" alt="" /></a>
+        <a className=" text-xl">
+          <img src={logo} className="w-20" alt="" />
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -78,7 +80,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink>All Recovered Items Page</NavLink>
+                  <NavLink to="/allRecovered">All Recovered Items Page</NavLink>
                 </li>
                 <li>
                   <NavLink to="/myItems">Manage My Items Page</NavLink>

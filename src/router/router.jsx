@@ -9,6 +9,7 @@ import Details from "../components/pages/Details/Details";
 import ManageMyPost from "../components/pages/ManageMyPost/ManageMyPost";
 import UpdatePost from "../components/pages/UpdatePost/UpdatePost";
 import PrivateRoute from "./PrivateRoute";
+import AllRecoveredItemsPage from "../components/pages/AllRecoveredItemsPage/AllRecoveredItemsPage";
 
 
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             <UpdatePost></UpdatePost>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/allRecovered",
+        element: <AllRecoveredItemsPage></AllRecoveredItemsPage>
       },
       {
         path: "/login",

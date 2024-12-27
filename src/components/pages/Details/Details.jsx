@@ -18,7 +18,9 @@ const Details = () => {
   const { id } = useParams();
   useEffect(() => {
     try {
-      axiosSecure.get(`/items/${id}`).then((res) => setPost(res.data));
+      axiosSecure.get(`/items/${id}`).then((res) => {
+        setPost(res.data);
+      });
     } catch (error) {
       // console.log(error);
     }
@@ -27,6 +29,7 @@ const Details = () => {
   const {
     postType,
     category,
+    status,
     description,
     email,
     location,
@@ -92,14 +95,17 @@ const Details = () => {
               <p className="mb-3">
                 <strong>Email:</strong> {email}
               </p>
+              <p className="mb-3">
+                <strong>Status:</strong> {status}
+              </p>
             </div>
             <div className="flex justify-end items-center">
+              
               {postType === "Lost" ? (
                 <div className="flex items-center justify-center bg-gray-100">
                   <button onClick={openModal} className="btn btn-neutral">
                     This is Mine !
                   </button>
-
                   <Modal
                     isOpen={isOpen}
                     onRequestClose={closeModal}
@@ -199,7 +205,7 @@ const Details = () => {
                       </div>
                       <div className="flex justify-center mt-3">
                         <button
-                          onClick={handleUpdateStatus()}
+                          onClick={handleUpdateStatus}
                           className="btn btn-info btn-outline"
                         >
                           Submit
