@@ -9,7 +9,7 @@ const HowItWorks = () => {
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6">
         <div className="flex flex-col items-center text-center">
           <img
-            src={recoverd}
+            src={report}
             alt="Step 1"
             className="w-16 h-16 mb-4"
           />
