@@ -30,6 +30,7 @@ const Details = () => {
     postType,
     category,
     status,
+    name,
     description,
     email,
     location,
@@ -93,7 +94,13 @@ const Details = () => {
                 <strong>Description:</strong> {description}
               </p>
               <p className="mb-3">
+                <strong>Name:</strong> {name}
+              </p>
+              <p className="mb-3">
                 <strong>Email:</strong> {email}
+              </p>
+              <p className="mb-3">
+                <strong>Category:</strong> {category}
               </p>
               <p className="mb-3">
                 <strong>Status:</strong> {status}
