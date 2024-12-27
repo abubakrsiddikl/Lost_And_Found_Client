@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const {createNewUser, signInWithGoogle}= useContext(AuthContext)
+  const { createNewUser, signInWithGoogle } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const handleRegister = (e) => {
@@ -18,10 +18,10 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    // if (!passwordRegex.test(password)) {
-    //   toast.error("Password should be strong . ");
-    //   return;
-    // }
+    if (!passwordRegex.test(password)) {
+      toast.error("Password should be strong . ");
+      return;
+    }
     // register new user
     createNewUser(email, password)
       .then((result) => {
@@ -32,6 +32,7 @@ const Register = () => {
       })
       .catch((err) => {
         // console.log(err);
+        toast.error("This email allready exist")
       });
   };
   const handleGoogleSignIn = () => {
