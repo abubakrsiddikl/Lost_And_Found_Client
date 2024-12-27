@@ -30,7 +30,7 @@ const AllRecoveredItemsPage = () => {
           </button>
         </div>
         {!isTableLayout ? (
-          // card format
+          // card formated
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {items.map((item) => (
               <div key={item._id} className="  shadow-lg bg-white rounded-xl pb-3">
