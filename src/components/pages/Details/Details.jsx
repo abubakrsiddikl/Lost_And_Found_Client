@@ -125,7 +125,7 @@ const Details = () => {
               {postType === "Lost" ? (
                 <div className="flex items-center justify-center bg-gray-100">
                   <button onClick={openModal} className="btn btn-neutral">
-                    This is Mine !
+                  Found This !
                   </button>
                   <Modal
                     isOpen={isOpen}
