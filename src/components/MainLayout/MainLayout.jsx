@@ -8,9 +8,7 @@ const MainLayout = () => {
   return (
     <div>
       <Toaster></Toaster>
-      <nav className="w-11/12 mx-auto">
-        <Navbar></Navbar>
-      </nav>
+      <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>
     </div>

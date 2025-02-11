@@ -1,4 +1,4 @@
-import { createBrowserRouter,  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../components/MainLayout/MainLayout";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
@@ -10,9 +10,7 @@ import ManageMyPost from "../components/pages/ManageMyPost/ManageMyPost";
 import UpdatePost from "../components/pages/UpdatePost/UpdatePost";
 import PrivateRoute from "./PrivateRoute";
 import AllRecoveredItemsPage from "../components/pages/AllRecoveredItemsPage/AllRecoveredItemsPage";
-
-
-
+import Contact from "../components/pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +32,8 @@ const router = createBrowserRouter([
       {
         path: "/allItems",
         element: <AllLostAndFoundItems></AllLostAndFoundItems>,
-        loader: () => fetch("https://ph-assignment-11-server-murex.vercel.app/allItems"),
+        loader: () =>
+          fetch("https://ph-assignment-11-server-murex.vercel.app/allItems"),
       },
       {
         path: "/items/:id",
@@ -43,7 +42,6 @@ const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        
       },
       {
         path: "/myItems",
@@ -64,7 +62,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/allRecovered",
-        element: <AllRecoveredItemsPage></AllRecoveredItemsPage>
+        element: <AllRecoveredItemsPage></AllRecoveredItemsPage>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
       {
         path: "/login",
