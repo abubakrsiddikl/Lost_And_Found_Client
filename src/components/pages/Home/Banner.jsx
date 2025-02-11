@@ -13,10 +13,9 @@ import slider1 from "../../../assets/slider1.jpg";
 import slider2 from "../../../assets/slider2.jpg";
 import slider3 from "../../../assets/slider3.jpeg";
 
-
 const Banner = () => {
   return (
-    <div className="w-11/12 mx-auto mt-10">
+    <div className=" mt-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -31,10 +30,15 @@ const Banner = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide><img src={slider3} className="w-full h-[300px] md:h-[450px]" alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slider2} className="w-full h-[300px] md:h-[450px]" alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slider1} className="w-full h-[300px] md:h-[450px]" alt="" /></SwiperSlide>
-        
+        <SwiperSlide>
+          <img src={slider1} className="w-full h-[300px] md:h-[450px] " alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider3} className="w-full h-[300px] md:h-[450px]" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider2} className="w-full h-[300px] md:h-[450px]" alt="" />
+        </SwiperSlide>
       </Swiper>
     </div>
   );
