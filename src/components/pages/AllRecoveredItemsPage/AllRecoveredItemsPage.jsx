@@ -21,7 +21,7 @@ const AllRecoveredItemsPage = () => {
   };
 
   return (
-    <div className="bg-base-200 pt-5 pb-5">
+    <div className="bg-base-200 pt-5 pb-5 min-h-screen">
       <h1 className="text-4xl text-center font-bold">All Revovered Item</h1>
       <div className="w-11/12 mx-auto ">
         <div className="flex justify-end">

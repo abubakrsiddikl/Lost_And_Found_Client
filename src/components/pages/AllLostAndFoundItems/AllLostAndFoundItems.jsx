@@ -58,7 +58,7 @@ const AllLostAndFoundItems = () => {
               <p>Status : {post?.status}</p>
               <div className="card-actions justify-end">
                 <Link to={`/items/${post._id}`}>
-                  <button className="btn btn-neutral">View Details</button>
+                  <button className="border border-black rounded-[4px] px-4 py-2 btn text-black">View Details</button>
                 </Link>
               </div>
             </div>

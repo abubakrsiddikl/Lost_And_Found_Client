@@ -10,13 +10,13 @@ const Latest = () => {
       .then((res) => setPosts(res.data));
   }, []);
   return (
-    <div className=" pt-7 pb-7 bg-base-200">
+    <div className=" pt-7 pb-7 bg-[#F3F4F6]">
       <h1 className="text-center text-4xl font-bold mb-2">
         Latest Lost & Found Post{" "}
       </h1>
       <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-3">
       {posts.map((post) => (
-        <div key={post._id} className="card  w-full shadow-lg">
+        <div key={post._id} className="card  w-full shadow-lg rounded-lg">
           <figure>
             <img
               src={post.thumbnail}
@@ -24,7 +24,7 @@ const Latest = () => {
               alt="Shoes"
             />
           </figure>
-          <div className="card-body">
+          <div className="card-body bg-white">
             <h2 className="card-title">{post.title}</h2>
             <p>Type : {post.postType}</p>
             <p>Location : {post.location}</p>
