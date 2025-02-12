@@ -97,6 +97,7 @@ const Login = () => {
         </div>
 
         <button
+        type="button"
           className="w-full flex items-center justify-center bg-black py-3 text-white font-bold rounded-md  transition"
           onClick={handleGoogleSignIn}
         >

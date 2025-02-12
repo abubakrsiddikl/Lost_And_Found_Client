@@ -102,12 +102,19 @@ const Register = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               name="password"
               className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-10 right-3 text-gray-500 hover:text-gray-700"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
 
           {/* register button */}
@@ -117,6 +124,7 @@ const Register = () => {
 
           {/* google sign up */}
           <button
+          type="button"
             className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-md bg-black text-white font-bold transition"
             onClick={handleGoogleSignIn}
           >
