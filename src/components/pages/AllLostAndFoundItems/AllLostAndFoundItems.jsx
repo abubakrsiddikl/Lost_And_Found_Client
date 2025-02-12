@@ -49,54 +49,7 @@ const AllLostAndFoundItems = () => {
       </div>
       <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-4">
         {posts.map((post) => (
-          // <div
-          //   key={post._id}
-          //   className="card bg-white w-full shadow-xl rounded-lg"
-          // >
-          //   <figure>
-          //     <img
-          //       src={post.thumbnail}
-          //       className="w-full h-[200px]"
-          //       alt="Shoes"
-          //     />
-          //   </figure>
-          //   <div className="pl-6">
-          //     <h2 className="card-title">{post.title}</h2>
-          //     <p className="flex items-center gap-2">
-          //       <AlertTriangle className="w-4 " />
-          //       {post.postType}
-          //     </p>
-
-          //     <p className="flex gap-2 items-center">
-          //       <img src={locationIcon} alt="" className="w-4" />{" "}
-          //       {post.location}
-          //     </p>
-
-          //     <p className="flex gap-2">
-          //       <img src={dateIcon} className="w-4" alt="" /> {post.date}
-          //     </p>
-          //     <p className="">
-          //       {post?.status === "Recovered" ? (
-          //         <p className="flex gap-2">
-          //           <CheckCircle className="w-4"></CheckCircle>Recovered
-          //         </p>
-          //       ) : (
-          //         <p className="flex gap-2 items-center">
-          //           <IoMdClose className="w-4 text-red-700" />
-          //           Not - Recovered
-          //         </p>
-          //       )}
-          //     </p>
-          //     <div className="card-actions justify-end">
-          //       <Link to={`/items/${post._id}`}>
-          //         <button className=" border border-black rounded-[4px] px-4 py-2 btn text-black m-2">
-          //           View Details
-          //         </button>
-          //       </Link>
-          //     </div>
-          //   </div>
-          // </div>
-          <div className="bg-white shadow-lg rounded-xl overflow-hidden p-4 transition-all hover:shadow-xl border border-gray-200">
+          <div key={post._id} className="bg-white shadow-lg rounded-xl overflow-hidden p-4 transition-all hover:shadow-xl border border-gray-200">
             {/* Thumbnail Image */}
             <img
               src={post.thumbnail}

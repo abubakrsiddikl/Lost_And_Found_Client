@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="bg-neutral  shadow dark:bg-gray-900 ">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+          <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse" href="/">
             <img src={logo} className="h-8 rounded-full" alt="Flowbite Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-content">
               Lost&Found
@@ -23,7 +24,7 @@ const Footer = () => {
               <a className="hover:underline me-4 md:me-6">Licensing</a>
             </li>
             <li>
-              <a className="hover:underline">Contact</a>
+              <Link to="/contact" className="hover:underline">Contact</Link>
             </li>
           </ul>
         </div>

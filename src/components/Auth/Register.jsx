@@ -32,7 +32,7 @@ const Register = () => {
       })
       .catch((err) => {
         // console.log(err);
-        toast.error("This email allready exist")
+        toast.error("This email allready exist");
       });
   };
   const handleGoogleSignIn = () => {
@@ -47,80 +47,92 @@ const Register = () => {
       });
   };
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center mt-4">Register Now </h1>
-      <div className="flex justify-center items-center p-9">
-        <div className="card bg-base-100 w-full shrink-0 max-w-sm border">
-          <form onSubmit={handleRegister} className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Photo-URL</span>
-              </label>
-              <input
-                type="text"
-                name="photo"
-                placeholder="Enter Profile Url"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control relative">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="password"
-                className="input input-bordered"
-                required
-              />
-              <button
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-12  btn-xs "
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye></FaEye>}
-              </button>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
-            </div>
-            <button onClick={handleGoogleSignIn} className="btn btn-neutral ">
-              Signup with Google <FcGoogle />
-            </button>
-          </form>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md lg:my-3">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Create an Account
+        </h2>
 
-          <p className="p-3 pt-0">
-            You have All ready Account Please ?{" "}
-            <Link to="/login" className="text-red-500 underline">
-              Login
-            </Link>
-          </p>
-        </div>
+        <form onSubmit={handleRegister} className="space-y-4">
+          {/* Name */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+              required
+            />
+          </div>
+
+          {/* Email  */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+              required
+            />
+          </div>
+
+          {/* photo url  */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Profile Photo URL
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your profile URL"
+              name="photo"
+              className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+              required
+            />
+          </div>
+
+          {/* Password  */}
+          <div className="relative">
+            <label className="block text-gray-700 font-medium mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              name="password"
+              className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
+              required
+            />
+          </div>
+
+          {/* register button */}
+          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition">
+            Register
+          </button>
+
+          {/* google sign up */}
+          <button
+            className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-md bg-black text-white font-bold transition"
+            onClick={handleGoogleSignIn}
+          >
+            <FcGoogle className="text-xl" /> Sign up with Google
+          </button>
+        </form>
+
+        <p className="text-center text-gray-600 mt-4">
+          Already have an account?
+          <a
+            href="/login"
+            className="text-blue-500 font-medium hover:underline"
+          >
+            Log in
+          </a>
+        </p>
       </div>
     </div>
   );

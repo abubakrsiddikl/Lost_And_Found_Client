@@ -96,7 +96,7 @@ const Details = () => {
       });
   };
   return (
-    <div className="w-11/12 mx-auto my-3">
+    <div className="w-11/12 mx-auto my-3 bg-[#F3F4F6]">
       <div className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col md:flex-row border">
         {/* image */}
         <div className="w-full md:w-1/2 flex justify-center items-center p-4 ">

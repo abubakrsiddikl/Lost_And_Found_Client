@@ -17,11 +17,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form & Info Section */}
+      {/* conatct form */}
       <section className="pb-10 px-4">
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-white shadow-md rounded-xl p-8">
+          {/* contact form */}
+          <div className="bg-white shadow-md rounded-lg p-8">
             <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -73,22 +73,22 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* Contact Info */}
-          <div className="flex flex-col justify-center bg-gray-100 shadow-md rounded-xl p-8">
+          {/* contact info */}
+          <div className="flex flex-col justify-center bg-white shadow-md rounded-lg p-8">
             <h2 className="text-2xl font-semibold mb-6">Our Contact Details</h2>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <FaMapMarkerAlt className="text-[#9ACBD0] text-xl" />
+                <FaMapMarkerAlt className="text-red-600 text-xl" />
                 <p className="text-gray-700">
                   123 Lost & Found Ave, Bhola Sadar, BD
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <FaPhoneAlt className="text-[#9ACBD0] text-xl" />
-                <p className="text-gray-700">+880 1234 567 890</p>
+                <FaPhoneAlt className="text-red-600 text-xl" />
+                <p className="text-gray-700">+880 1319 697 765</p>
               </div>
               <div className="flex items-center gap-4">
-                <FaEnvelope className="text-[#9ACBD0] text-xl" />
+                <FaEnvelope className="text-red-600 text-xl" />
                 <p className="text-gray-700">support@lostfound.com</p>
               </div>
             </div>

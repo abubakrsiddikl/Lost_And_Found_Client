@@ -22,7 +22,7 @@ const Latest = () => {
       </h1>
       <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-3">
         {posts.map((post) => (
-          <div className="bg-white shadow-lg rounded-xl overflow-hidden p-4 transition-all hover:shadow-xl border border-gray-200">
+          <div key={post._id} className="bg-white shadow-lg rounded-xl overflow-hidden p-4 transition-all hover:shadow-xl border border-gray-200">
             {/* image */}
             <img
               src={post.thumbnail}
