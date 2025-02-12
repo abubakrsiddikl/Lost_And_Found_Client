@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import dateIcon from "../../../assets/schedule.png";
+import locationIcon from "../../../assets/location.png";
+import { AlertTriangle, CheckCircle } from "lucide-react";
+import { IoMdClose } from "react-icons/io";
 
 const AllLostAndFoundItems = () => {
   const items = useLoaderData();
@@ -16,7 +20,7 @@ const AllLostAndFoundItems = () => {
       .then((res) => setPosts(res.data));
   }, [searchParams]);
   return (
-    <div className="pb-4">
+    <div className="pb-4 bg-[#F3F4F6]">
       {/* search input */}
       <div className="w-full md:w-1/2 mx-auto p-4 pb-7">
         <label className="input input-bordered flex items-center gap-2">
@@ -42,7 +46,10 @@ const AllLostAndFoundItems = () => {
       </div>
       <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-4">
         {posts.map((post) => (
-          <div key={post._id} className="card  w-full shadow-xl">
+          <div
+            key={post._id}
+            className="card bg-white w-full shadow-xl rounded-lg"
+          >
             <figure>
               <img
                 src={post.thumbnail}
@@ -50,15 +57,38 @@ const AllLostAndFoundItems = () => {
                 alt="Shoes"
               />
             </figure>
-            <div className="card-body">
+            <div className="pl-6">
               <h2 className="card-title">{post.title}</h2>
-              <p>Type : {post.postType}</p>
-              <p>Location : {post.location}</p>
-              <p>Date : {post.date}</p>
-              <p>Status : {post?.status}</p>
+              <p className="flex items-center gap-2">
+                <AlertTriangle className="w-4 " />
+                {post.postType}
+              </p>
+
+              <p className="flex gap-2 items-center">
+                <img src={locationIcon} alt="" className="w-4" />{" "}
+                {post.location}
+              </p>
+
+              <p className="flex gap-2">
+                <img src={dateIcon} className="w-4" alt="" /> {post.date}
+              </p>
+              <p className="">
+                {post?.status === "Recovered" ? (
+                  <p className="flex gap-2">
+                    <CheckCircle className="w-4"></CheckCircle>Recovered
+                  </p>
+                ) : (
+                  <p className="flex gap-2 items-center">
+                    <IoMdClose className="w-4 text-red-700" />
+                    Not - Recovered
+                  </p>
+                )}
+              </p>
               <div className="card-actions justify-end">
                 <Link to={`/items/${post._id}`}>
-                  <button className="border border-black rounded-[4px] px-4 py-2 btn text-black">View Details</button>
+                  <button className=" border border-black rounded-[4px] px-4 py-2 btn text-black m-2">
+                    View Details
+                  </button>
                 </Link>
               </div>
             </div>
