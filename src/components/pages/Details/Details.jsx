@@ -7,7 +7,15 @@ import { format } from "date-fns";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { da } from "date-fns/locale";
+import {
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaEnvelope,
+  FaUser,
+  FaTag,
+  FaClipboardList,
+} from "react-icons/fa";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Details = () => {
   const { user } = useContext(AuthContext);
@@ -88,326 +96,62 @@ const Details = () => {
       });
   };
   return (
-    // <div className="bg-gray-100 min-h-screen py-10">
-    //   <div className="container mx-auto max-w-4xl">
-    //     <div className="bg-white shadow-lg rounded-lg overflow-hidden flex">
-    //       {/* Image Section */}
-    //       <div className="w-1/2">
-    //         <img
-    //           src={thumbnail}
-    //           alt=""
-    //           className=" h-64 md: object-cover"
-    //         />
-    //       </div>
-
-    //       {/* Content Section */}
-    //       <div className="p-8 w-1/2">
-    //         <h1 className="text-3xl font-bold text-gray-800 mb-4">{title}</h1>
-    //         <div className="text-gray-700">
-    //           <p className="mb-3">
-    //             <strong>Type:</strong> {postType}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Location:</strong> {location}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Date:</strong> {date}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Description:</strong> {description}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Name:</strong> {name}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Email:</strong> {email}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Category:</strong> {category}
-    //           </p>
-    //           <p className="mb-3">
-    //             <strong>Status:</strong> {status}
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-end items-center">
-    //           {postType === "Lost" ? (
-    //             <div className="flex items-center justify-center bg-gray-100">
-    //               <button onClick={openModal} className="btn btn-neutral">
-    //                 Found This !
-    //               </button>
-    //               <Modal
-    //                 isOpen={isOpen}
-    //                 onRequestClose={closeModal}
-    //                 ariaHideApp={false}
-    //                 className="bg-white w-full md:w-3/4 lg:w-1/2 max-w-2xl max-h-[80vh] overflow-y-auto p-6 rounded-lg shadow-lg mx-auto relative"
-    //                 overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
-    //               >
-    //                 {/* Close Button */}
-    //                 <button
-    //                   onClick={closeModal}
-    //                   className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-    //                 >
-    //                   ✕
-    //                 </button>
-
-    //                 {/* Modal Content */}
-    //                 <form onSubmit={handleSubmit}>
-    //                   {/* recovered locaion */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">Recovered location</span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="recoveredLocation"
-    //                       placeholder="Enter Recovered Location"
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   {/* recoverde date */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">Date Lost or Found</span>
-    //                     </label>
-    //                     <DatePicker
-    //                       selected={selectedDate}
-    //                       onChange={(date) => setSelectedDate(date)}
-    //                       dateFormat="dd/MM/yyyy"
-    //                       className="input input-bordered w-full"
-    //                       icon="fa fa-calendar"
-    //                       placeholderText="Select Date Lost or Found"
-    //                       required
-    //                     ></DatePicker>
-    //                   </div>
-
-    //                   {/* recovered email */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">
-    //                         Recovered Person Email
-    //                       </span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="email"
-    //                       placeholder=""
-    //                       readOnly
-    //                       value={user?.email}
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   {/* recovered name */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">
-    //                         Recovered Person Name
-    //                       </span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="name"
-    //                       placeholder=""
-    //                       readOnly
-    //                       value={user?.displayName}
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   {/* recovered photo */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">
-    //                         Recovered Person Photo
-    //                       </span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="photo"
-    //                       placeholder=""
-    //                       readOnly
-    //                       value={user?.photoURL}
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   <div className="flex justify-center mt-3">
-    //                     <button
-    //                       onClick={handleUpdateStatus}
-    //                       className="btn btn-info btn-outline"
-    //                     >
-    //                       Submit
-    //                     </button>
-    //                   </div>
-    //                 </form>
-    //               </Modal>
-    //             </div>
-    //           ) : (
-    //             <div className="flex items-center justify-center bg-gray-100">
-    //               <button onClick={openModal} className="btn btn-neutral">
-    //                 This is Mine !
-    //               </button>
-
-    //               <Modal
-    //                 isOpen={isOpen}
-    //                 onRequestClose={closeModal}
-    //                 ariaHideApp={false}
-    //                 className="bg-white w-full md:w-3/4 lg:w-1/2 max-w-2xl max-h-[80vh] overflow-y-auto p-6 rounded-lg shadow-lg mx-auto relative"
-    //                 overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
-    //               >
-    //                 {/* Close Button */}
-    //                 <button
-    //                   onClick={closeModal}
-    //                   className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-    //                 >
-    //                   ✕
-    //                 </button>
-
-    //                 {/* Modal Content */}
-    //                 <form onSubmit={handleSubmit}>
-    //                   {/* recovered locaion */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">Recovered location</span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="recoveredLocation"
-    //                       placeholder="Enter Recovered Location"
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   {/* recoverde date */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">Date Lost or Found</span>
-    //                     </label>
-    //                     <DatePicker
-    //                       selected={selectedDate}
-    //                       onChange={(date) => setSelectedDate(date)}
-    //                       dateFormat="dd/MM/yyyy"
-    //                       className="input input-bordered w-full"
-    //                       icon="fa fa-calendar"
-    //                       placeholderText="Select Date Lost or Found"
-    //                       required
-    //                     ></DatePicker>
-    //                   </div>
-
-    //                   {/* recovered email */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">
-    //                         Recovered Person Email
-    //                       </span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="email"
-    //                       placeholder=""
-    //                       readOnly
-    //                       value={user?.email}
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   {/* recovered name */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">
-    //                         Recovered Person Name
-    //                       </span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="name"
-    //                       placeholder=""
-    //                       readOnly
-    //                       value={user?.displayName}
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   {/* recovered photo */}
-    //                   <div className="form-control w-full">
-    //                     <label className="label">
-    //                       <span className="label-text">
-    //                         Recovered Person Photo
-    //                       </span>
-    //                     </label>
-    //                     <input
-    //                       type="text"
-    //                       name="photo"
-    //                       placeholder=""
-    //                       readOnly
-    //                       value={user?.photoURL}
-    //                       className="input input-bordered"
-    //                       required
-    //                     />
-    //                   </div>
-    //                   <div className="flex justify-center mt-3">
-    //                     <button
-    //                       onClick={handleUpdateStatus}
-    //                       className="btn btn-info btn-outline"
-    //                     >
-    //                       Submit
-    //                     </button>
-    //                   </div>
-    //                 </form>
-    //               </Modal>
-    //             </div>
-    //           )}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="bg-gray-50 min-h-screen py-10">
-    <div className="w-11/12 mx-auto ">
-      <div className="bg-white shadow-md rounded-xl overflow-hidden flex flex-col md:flex-row ">
-        {/* Image Section */}
-        <div className="w-full md:w-1/2 flex justify-center items-center p-4">
+    <div className="w-11/12 mx-auto my-3">
+      <div className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col md:flex-row border">
+        {/* image */}
+        <div className="w-full md:w-1/2 flex justify-center items-center p-4 ">
           <img
             src={thumbnail}
-            alt=""
-            className=" w-full object-cover"
+            alt={title}
+            className="w-full rounded-lg object-cover"
           />
         </div>
 
-        {/* Content Section */}
+        {/* content */}
         <div className="p-6 w-full md:w-1/2">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-3">{title}</h1>
-          <div className="text-lg text-gray-600">
-            <p className="mb-1">
-              <span className="font-bold ">Type:</span> {postType}
+          <h1 className="text-2xl font-semibold text-gray-900 mb-4">{title}</h1>
+          <div className="text-lg text-gray-700 space-y-2">
+            <p className="flex items-center gap-2">
+              <FaClipboardList className="text-blue-500" />{" "}
+              <span className="font-bold">Type:</span> {postType}
             </p>
-            <p className="mb-1">
+            <p className="flex items-center gap-2">
+              <FaMapMarkerAlt className="text-red-500" />{" "}
               <span className="font-bold">Location:</span> {location}
             </p>
-            <p className="mb-1">
+            <p className="flex items-center gap-2">
+              <FaCalendarAlt className="text-green-500" />{" "}
               <span className="font-bold">Date:</span> {date}
             </p>
-            <p className="mb-1">
+            <p>
               <span className="font-bold">Description:</span> {description}
             </p>
-            <p className="mb-1">
+            <p className="flex items-center gap-2">
+              <FaUser className="text-purple-500" />{" "}
               <span className="font-bold">Name:</span> {name}
             </p>
-            <p className="mb-1">
+            <p className="flex items-center gap-2">
+              <FaEnvelope className="text-yellow-500" />{" "}
               <span className="font-bold">Email:</span> {email}
             </p>
-            <p className="mb-1">
+            <p className="flex items-center gap-2">
+              <FaTag className="text-gray-600" />{" "}
               <span className="font-bold">Category:</span> {category}
             </p>
-            <p className="mb-1">
-              <span className="font-bold">Status:</span> {status}
+            <p
+              className={`font-bold ${
+                status === "Recovered" ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              Status: {status}
             </p>
           </div>
-          <div className="flex justify-end mt-4">
+
+          {/* Action Button */}
+          <div className="flex justify-end mt-6">
             <button
               onClick={openModal}
-              className="border border-black py-2 px-4 rounded-[4px] "
+              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md transition-all"
             >
               {postType === "Lost" ? "Found This!" : "This is Mine!"}
             </button>
@@ -420,18 +164,21 @@ const Details = () => {
         isOpen={isOpen}
         onRequestClose={closeModal}
         ariaHideApp={false}
-        className="bg-white w-full md:w-3/4 lg:w-1/2 max-w-2xl max-h-[80vh] overflow-y-auto p-6 rounded-lg shadow-lg mx-auto relative"
+        className="bg-white w-full md:w-3/4 lg:w-1/2 max-w-2xl max-h-[80vh] overflow-y-auto p-6 rounded-lg shadow-xl mx-auto relative"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
       >
         {/* Close Button */}
         <button
           onClick={closeModal}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
         >
           ✕
         </button>
 
         {/* Modal Content */}
+        <h2 className="text-xl font-semibold mb-4 text-center">
+          Report Recovery
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="form-control w-full">
             <label className="label">
@@ -505,7 +252,7 @@ const Details = () => {
           <div className="flex justify-center mt-4">
             <button
               onClick={handleUpdateStatus}
-              className="btn bg-blue-500 hover:bg-blue-600 text-white btn-outline rounded-md px-6 py-2 transition-all"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg px-6 py-2 transition-all"
             >
               Submit
             </button>
@@ -513,7 +260,6 @@ const Details = () => {
         </form>
       </Modal>
     </div>
-  </div>
   );
 };
 

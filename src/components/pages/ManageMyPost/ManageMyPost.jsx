@@ -43,7 +43,7 @@ const ManageMyPost = () => {
     });
   };
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto min-h-screen">
       <h1 className="text-center text-4xl font-bold">My Post</h1>
       <div className="overflow-x-auto">
         <table className="table">
