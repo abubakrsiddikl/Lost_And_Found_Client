@@ -14,9 +14,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleLogIn = (e) => {
     e.preventDefault();
-    const form = new FormData(e.target);
-    const email = form.get("email");
-    const password = form.get("password");
+    
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     // login implement
     logInUser(email, password)
@@ -72,6 +72,7 @@ const Login = () => {
             placeholder="Enter your password"
           />
           <button
+          type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute top-12 right-3 text-gray-500 hover:text-gray-700"
           >
