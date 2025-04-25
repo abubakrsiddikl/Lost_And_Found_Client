@@ -167,7 +167,7 @@ const Details = () => {
         </div>
       </div>
 
-      {/* Moda */}
+      {/* Modal */}
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
