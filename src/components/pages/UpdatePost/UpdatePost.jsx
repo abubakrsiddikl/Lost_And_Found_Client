@@ -67,7 +67,7 @@ const UpdatePost = () => {
     // data post axios metod to database
     axios
       .put(
-        `https://ph-assignment-11-server-murex.vercel.app/updateItems/${_id}`,
+        `http://localhost:5000/updateItems/${_id}`,
         newItem
       )
       .then((res) => {

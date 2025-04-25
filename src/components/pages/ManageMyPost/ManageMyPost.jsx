@@ -28,7 +28,7 @@ const ManageMyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://ph-assignment-11-server-murex.vercel.app/item/${id}`).then((res) => {
+        axios.delete(`http://localhost:5000/item/${id}`).then((res) => {
           if (res.data.deletedCount === 1) {
             const remaingPosts = posts.filter((post) => post._id !== id);
             setPosts(remaingPosts);

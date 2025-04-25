@@ -18,7 +18,7 @@ const AllLostAndFoundItems = () => {
   useEffect(() => {
     axios
       .get(
-        `https://ph-assignment-11-server-murex.vercel.app/allItems?searchParams=${searchParams}`
+        `http://localhost:5000/allItems?searchParams=${searchParams}`
       )
       .then((res) => setPosts(res.data));
   }, [searchParams]);

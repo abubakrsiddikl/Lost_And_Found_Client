@@ -36,7 +36,7 @@ const AddLostORFound = () => {
       status: "Not-Recovered"
     };
     // data post axios metod to database
-    axios.post("https://ph-assignment-11-server-murex.vercel.app/addItems", newItem).then((res) => {
+    axios.post("http://localhost:5000/addItems", newItem).then((res) => {
       if (res.data) {
         toast.success("Your Post Added successfully .");
         // console.log(res);
